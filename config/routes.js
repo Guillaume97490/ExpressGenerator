@@ -22,5 +22,8 @@ module.exports = function (app, passport) {
         failureFlash: true // allow flash messages
     }));
 
+    app.get('/page-public', home.pagePublic);
+    
+    app.get('/page-inscrits', home.loggedIn, home.pageInscrits);//home
 
 }

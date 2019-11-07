@@ -60,7 +60,7 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-                return done(null, false, req.flash('error', 'That email is already taken.'));
+                return done(null, false, req.flash('error', 'Cet adresse email est déja utilisée.'));
             } else {
             	
             	
@@ -97,7 +97,7 @@ module.exports = function(passport) {
                     email.activate_email(req.body.username,req.body.email,active_code);
                                         return done(null, newUser,req.flash('success', 'Account Created Successfully,Please Check Your Email For Account Confirmation.'));
                     */
-                    return done(null, newUser,req.flash('success', 'Account Created Successfully'));
+                    return done(null, newUser,req.flash('success', 'Compte créer avec succés'));
                     
                     req.session.destroy();
                 
@@ -143,16 +143,16 @@ module.exports = function(passport) {
 
             // if no user is found, return the message
             if (!user)
-                return done(null, false, req.flash('error', 'Sorry Your Account Not Exits ,Please Create Account.')); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false, req.flash('error', 'Désolé ce compte n\'éxiste pas, veuillez vous inscrire.')); // req.flash is the way to set flashdata using connect-flash
 
             
             
             // if the user is found but the password is wrong
             if (!user.validPassword(password))
-                return done(null, false, req.flash('error', 'Email and Password Does Not Match.')); // create the loginMessage and save it to session as flashdata
+                return done(null, false, req.flash('error', 'Identifiants incorrects.')); // create the loginMessage and save it to session as flashdata
 
             if(user.status === 'inactive')
-             return done(null, false, req.flash('error', 'Your Account Not Activated ,Please Check Your Email')); // create the loginMessage and save it to session as flashdata
+             return done(null, false, req.flash('error', 'Votre compte n\'es pas activé, veuillez vérifier vos email')); // create the loginMessage and save it to session as flashdata
             
             
             // all is well, return successful user

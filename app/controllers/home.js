@@ -67,5 +67,30 @@ exports.login = function(req, res) {
 	
 }
 
+exports.pagePublic = function(req, res) {
+	res.render('public');
+}
+
+exports.pageInscrits = function(req, res) {
+
+	console.log(req.session);
+
+	if (req.session.user) {
+
+		res.render('inscrit');
+
+	} else {
+
+		res.render('login', {
+			error : req.flash("error"),
+			success: req.flash("success"),
+			session:req.session
+		});
+
+	}
+	
+}
+
+
 
     
